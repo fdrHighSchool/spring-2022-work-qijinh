@@ -1,43 +1,30 @@
-import java.util.*;
+public class DataStore {
+  public static void main(String[] args) {
 
-public class dataStore {
+    Student student1 = new Student("1234567", "Jimmy Smith", true, new int[] {90, 80, 95, 90, 100});
+    Student student2 = new Student("9876543", "Maria Hernandez", new int[] {95, 100, 100, 90, 90});
+    Student student3 = new Student("1357911", "Jamal Jenkins", new int[] {85, 85, 95, 100, 90});
+    Student student4 = new Student("2468101", "Ramiz Ahmed", true, new int[] {90, 100, 75, 85, 90});
+    Student student5 = new Student("1928374", "Michael Green", true, new int[] {80, 80, 65, 55, 90});
 
-  public static void main (String[] args){
+    Student[] stu = {student1, student2, student3, student4, student5};
+    String cc = "Close Contact Students: ";
 
-    String[][] data = {{"Student ID", "Student Name", "Close Contact", "Grades"},
-                       {"1234567", "Jimmy Smith", "Y", "90, 80, 95, 90, 180"},
-                       {"9876543", "Maria Hernandez", "N", "95, 100, 100, 90, 90"},
-                       {"1357911", "Jamal Jenkins", "N", "85, 85, 95, 100, 90"},
-                       {"2458101", "Ramiz Ahmed", "Y", "90, 100, 75, 85, 90"},
-                       {"1928374", "Michael Green", "Y", "80, 80, 65, 55, 90"}};
+    for (int i = 0; i < stu.length; i++){
+      System.out.println(stu[i].getName() + "s average is: " + stu[i].getAverage());
 
-    System.out.println();
-    System.out.println("Close Contact Students: " + Arrays.toString(closeContact(data)));
-    System.out.println();
-    
-  }
-
-  public static String[] closeContact(String[][] data){
-
-    int k = 0;
-
-    for (int i = 0; i < data.length; i++){
-      if (data[i][2] == "Y"){
-        k++;
+      if (stu[i].isCloseContact()){
+        System.out.println("Please report to the auditortium for your take-home test kit.");
+        cc += stu[i].getName() + "   ";
       }
+      else {
+        System.out.println("Not a close contact. Keep Masking! Get Boosted!");
+      }
+      System.out.println();
     }
 
-    String[] closeContact = new String[k];
+    System.out.println(cc);
 
-    int j = 0;
-    for (int i = 0; i < data.length; i++){
-      if (data[i][2] == "Y"){
-        closeContact[j] = data[i][1];
-        j++;
-      }
-    }
+ } // end main method
 
-    return closeContact;
-  }
-
-}
+} // end class
