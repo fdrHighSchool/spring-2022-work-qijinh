@@ -13,6 +13,14 @@ public class StepTracker {
 
   }
 
+  public int steps(){
+    return this.step;
+  }
+
+  public int day(){
+    return this.day;
+  }
+
   public int activeDays() {
     return activeDay;
   }
@@ -29,9 +37,9 @@ public class StepTracker {
 
   public void addDailySteps(int s) {
     this.step += s;
-    this.activeDay++;
-    if (step >= min) {
-      activeDay++;
+    this.day++;
+    if (s >= this.min) {
+      this.activeDay++;
     }
   }
 
