@@ -4,10 +4,21 @@ public class GameOfLife {
 
   public static void main (String[] args) {
     String[][] game = SetUp();
+    int g = 1;
     Display(game);
-    System.out.println();
-    game = NextGen(game);
-    Display(game);
+    System.out.println("Generation: " + g);
+
+    long expectedtime = System.currentTimeMillis();
+    while (true) {
+      while(System.currentTimeMillis() < expectedtime){}
+      expectedtime += 3000;
+      g++;
+      game = NextGen(game);
+      Display(game);
+      System.out.println("Generation: " + g);
+
+    }
+
 
 
   }
@@ -17,7 +28,7 @@ public class GameOfLife {
     String[][] game = new String[8][15];
     for (int i = 0; i < game.length; i++){
       for (int j = 0; j < game[0].length; j++){
-        if(Math.random() < 0.5)
+        if(Math.random() < 0.07)
           game[i][j] = "O";
         else
           game[i][j] = " ";
@@ -28,12 +39,15 @@ public class GameOfLife {
 
 
   public static void Display(String[][] game) {
+    System.out.println();
     for (String[] i : game){
       for (String j : i){
         System.out.print(j + " ");
       }
       System.out.println();
     }
+    System.out.println();
+
   }
 
 
@@ -47,15 +61,15 @@ public class GameOfLife {
 
     //row 2 - 7, col 2 - 14
     int i = 0;
-    for (int row = 1; row < game.length - 1; row++) {
-      for (int col = 1; col < game[0].length - 1; col++) {
+    for (int row = 0; row < game.length; row++) {
+      for (int col = 0; col < game[0].length; col++) {
         i = 0;
         if (game[row][col] == "O")
           i--;
 
         for (int r = -1; r <= 1; r++) {
           for (int c = -1;c <= 1; c++) {
-            if (game[row + r][col + c] == "O"){
+            if (game[(row + r + 8)%8][(col + c + 15)%15] == "O"){
               i++;
             }
           }
@@ -66,7 +80,7 @@ public class GameOfLife {
     }
 
     //row 2 - 7, col 1
-    for (int row = 1; row < game.length - 1; row++) {
+    /*for (int row = 1; row < game.length - 1; row++) {
         i = 0;
         if (game[row][0] == "O")
           i--;
@@ -191,10 +205,9 @@ public class GameOfLife {
       }
     }
     if (i >= 2 && i < 4)
-      nextGen[7][14] = "O";
+      nextGen[7][14] = "O";*/
 
     return nextGen;
   }
-
 
 }
