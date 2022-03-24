@@ -25,16 +25,25 @@ public class Deck {
   }
 
   public void shuffle() {
-    ArrayList<Card> shuffledDeck = new ArrayList<Card>();
+    ArrayList<Card> sub1 = new ArrayList<Card>();
+    ArrayList<Card> sub2 = new ArrayList<Card>();
 
-    for (int i = 0; i < 52; i++){
-      int r = (int)(Math.random() * (this.deck.size() - 1));
-
-      shuffledDeck.add(this.deck.get(r));
-      this.deck.remove(r);
+    for(int i = 0; i < this.deck.size() / 2; i++) {
+      sub1.add(this.deck.get(i));
+      sub2.add(this.deck.get(i + 26));
     }
 
-    this.deck = shuffledDeck;
+    // grab from the bottom of each sub-array and place in the back of deck
+    int i = this.deck.size() - 1;
+
+    while(sub1.size() > 0) {
+      this.deck.set(i, sub2.get(sub2.size() - 1)); // get last item from sub2
+      this.deck.set(i - 1, sub1.get(sub1.size() - 1)); // get last item from sub1
+      sub2.remove(sub2.size() - 1);
+      sub1.remove(sub1.size() - 1);
+      i -= 2;
+    }
+
   }
 
 } // end class
