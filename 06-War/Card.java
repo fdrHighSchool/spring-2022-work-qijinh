@@ -16,18 +16,22 @@ public class Card {
 
   } // end constructor method
 
+  public int getValue() {
+    return this.value;
+  }
+
   public String toString() {
     String card = "";
-    if(color.equals("red")) {
-      // red text
-      card += "\033[0;31m";
-    }
-    else {
-      // black text
-      card += "\033[0;30m";
-    }
-    // white background
-    card += "\033[47m";
+    // if(color.equals("red")) {
+    //   // red text
+    //   card += "\033[0;31m";
+    // }
+    // else {
+    //   // black text
+    //   card += "\033[0;30m";
+    // }
+    // // white background
+    // card += "\033[47m";
 
     if(value < 11) {
       card += value;

@@ -43,7 +43,10 @@ public class Deck {
       sub1.remove(sub1.size() - 1);
       i -= 2;
     }
+  }
 
+  public Card popCard() {
+    return this.deck.remove(0);
   }
 
 } // end class
